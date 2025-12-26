@@ -1,0 +1,3 @@
+title: FLAG生成小助手
+version: 1.0.0
+flag_format: "flag{.*}"
