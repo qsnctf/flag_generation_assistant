@@ -102,8 +102,11 @@ def main_menu():
         return_to_main_menu()
 
 
-if __name__ == "__main__":
+def main():
     try:
         main_menu()
     except KeyboardInterrupt:
         console.print("\n[bold red]程序已强制终止[/bold red]")
+
+if __name__ == "__main__":
+    main()
