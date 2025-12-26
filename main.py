@@ -4,14 +4,6 @@ import yaml
 import questionary
 from rich.console import Console
 
-# 导入青少年CTF专属模块
-try:
-    from module.qsnctf_welcome import hello, about
-except ImportError:
-    # 如果找不到模块，定义空函数防止报错，方便你在不同环境下调试
-    def hello(): pass
-    def about(): console.print("[bold yellow]青少年CTF训练平台：致力于普及网络安全知识。[/bold yellow]")
-
 console = Console()
 
 # 1. 核心默认配置（内置 L33t 映射表）

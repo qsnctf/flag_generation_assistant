@@ -1,151 +1,151 @@
-# 青少年CTF工具模板 (QSNCTF Tools Template)
+# 青少年CTF FLAG生成器
 
-一个基于 Python 的命令行工具模板。该项目展示了如何使用现代化的命令行界面库来构建交互式工具。
+一个专为青少年CTF竞赛设计的FLAG生成工具，支持多种FLAG生成方式，界面美观易用。
 
-## 🚀 项目特色
+## 功能特性
 
-- **美观的交互界面** - 使用 Questionary 库提供友好的命令行交互体验
-- **彩色输出** - 集成 Rich 库实现彩色和格式化输出
-- **模块化设计** - 采用模块化架构，便于扩展和维护
-- **青少年CTF专用** - 专为青少年网络安全爱好者设计
+### 🔑 FLAG生成方式
 
-## 📁 项目结构
+1. **基于UUID生成 (随机型)**
+   - 自动生成唯一的UUID
+   - 格式：`flag{uuid}`
+   - 适用于需要唯一标识符的场景
+
+2. **基于MD5生成 (哈希型)**
+   - 输入任意文本生成MD5哈希
+   - 格式：`flag{md5_hash}`
+   - 适用于基于特定内容的FLAG生成
+
+3. **基于语义化字符串 (L33t变体)**
+   - 支持L33t Sp34k转换
+   - 字符替换规则：
+     - A → 4
+     - B → 8  
+     - E → 3
+     - G → 6
+     - L → 1
+     - O → 0
+     - S → 5
+     - T → 7
+     - Z → 2
+     - I → !
+   - 格式：`flag{l33t_text}`
+   - 适用于需要趣味性和可读性的FLAG
+
+### 🎨 界面特色
+
+- 使用 `rich` 库实现彩色终端输出
+- 使用 `questionary` 提供交互式菜单
+- 支持中文界面，操作简单直观
+- 美观的ASCII艺术标题
+
+## 安装要求
+
+### Python版本
+- Python 3.7+
+
+### 依赖包
+```bash
+pip install rich questionary
+```
+
+## 使用方法
+
+1. **启动程序**
+   ```bash
+   python main.py
+   ```
+
+2. **选择功能**
+   - 使用方向键选择菜单选项
+   - 按回车确认选择
+
+3. **生成FLAG**
+   - 根据提示输入相应内容
+   - 程序会自动生成并显示FLAG
+
+## 项目结构
 
 ```
-qsnctf_tools_template/
+Flag Generator/
 ├── main.py                 # 主程序入口
 ├── config.yml              # 配置文件
-├── questionary.md          # Questionary 库使用文档
-├── README.md               # 项目说明文档
-└── module/                 # 模块目录
-    ├── qsnctf_welcome/     # 欢迎模块
-    │   └── __init__.py
-    └── qsnctf_progress/    # 进度条模块
-        └── __init__.py
+├── README.md               # 项目说明
+└── module/                 # 功能模块
+    ├── qsnctf_welcome.py   # 欢迎界面模块
+    └── flag_generator.py   # FLAG生成器核心模块
 ```
 
-## 🛠️ 功能特性
+## 配置说明
 
-### 1. 主菜单系统
-- 使用 Questionary 的选择菜单
-- 支持自定义指针样式
-- 提供多种操作选项
-
-### 2. 服务部署功能
-- 多选菜单选择部署服务
-- 支持 Web Server、Database、Redis Cache、Auth Service 等
-
-### 3. 配置文件管理
-- 自动补全输入支持模糊搜索
-- 配置文件快速选择
-
-### 4. 数据报告生成
-- 集成 Rich 表格显示
-- 美观的系统状态展示
-
-## 📦 依赖库
-
-- **questionary** - 交互式命令行界面
-- **rich** - 终端美化输出
-- **pyyaml** - YAML 配置文件解析
-
-## 🚀 快速开始
-
-### 安装依赖
-
-```bash
-pip install questionary rich pyyaml
-```
-
-### 运行程序
-
-```bash
-python main.py
-```
-
-## 💡 使用示例
-
-运行程序后，您将看到：
-
-1. **彩虹色的欢迎界面** - 显示项目标题和版本信息
-2. **主菜单选择** - 提供以下选项：
-   - 🚀 部署新版本
-   - 🔍 查看系统日志
-   - 🛠️ 修改配置文件
-   - 📊 生成数据报告
-   - ❌ 退出程序
-
-### 部署新版本示例
-
-选择"🚀 部署新版本"后：
-- 使用复选框选择要部署的服务
-- 程序会显示选中的服务列表
-- 使用彩色进度条显示部署进度
-
-### 配置文件管理示例
-
-选择"🛠️ 修改配置文件"后：
-- 使用自动补全功能搜索配置文件
-- 支持模糊匹配和忽略大小写
-- 快速定位目标配置文件
-
-## 🔧 模块说明
-
-### qsnctf_welcome 模块
-
-提供欢迎界面功能：
-- 彩虹色 ASCII 艺术显示
-- 配置信息读取和显示
-- 字符渐变效果
-
-### qsnctf_progress 模块
-
-提供进度条功能：
-- 彩色旋转动画
-- 百分比显示
-- 自定义宽度设置
-
-## ⚙️ 配置说明
-
-编辑 `config.yml` 文件来自定义项目设置：
-
+### config.yml
 ```yaml
 title: 青少年CTF工具示例
 version: 1.0.0
+flag_format: "flag{.*}"
 ```
 
-## 🎯 开发指南
+- `title`: 程序标题
+- `version`: 版本号
+- `flag_format`: FLAG格式正则表达式
 
-### 添加新功能模块
+## 开发说明
 
-1. 在 `module/` 目录下创建新模块
-2. 实现模块功能
-3. 在 `main.py` 中导入和使用
+### 添加新的FLAG生成方式
 
-### 自定义界面样式
+1. 在 `module/flag_generator.py` 中添加新的生成函数
+2. 在 `flag_generator_menu()` 函数中添加菜单选项
+3. 更新主菜单调用
 
-- 修改 Questionary 的 `pointer` 参数来自定义指针样式
-- 使用 Rich 的样式标记来美化输出
-- 调整颜色方案以适应不同主题
+### 示例代码结构
 
-## 🤝 贡献指南
+```python
+def generate_flag_custom():
+    """自定义FLAG生成函数"""
+    # 实现生成逻辑
+    pass
 
-欢迎提交 Issue 和 Pull Request 来改进这个项目！
+def flag_generator_menu():
+    # 添加菜单选项
+    choices = [
+        "🔑 根据UUID生成FLAG",
+        "🔒 根据MD5生成FLAG", 
+        "💬 根据语义化字符串生成FLAG",
+        "🆕 自定义生成方式",  # 新增选项
+        "⬅️ 返回主菜单"
+    ]
+    # 添加处理逻辑
+```
 
-## 📄 许可证
+## 使用示例
 
-本项目仅供学习和教育用途。
+### UUID FLAG生成
+```
+生成的FLAG: flag{123e4567-e89b-12d3-a456-426614174000}
+```
 
-## 🔗 相关资源
+### MD5 FLAG生成
+```
+输入的文本: hello world
+MD5哈希值: 5eb63bbbe01eeed093cb22bb8f5acdc3
+生成的FLAG: flag{5eb63bbbe01eeed093cb22bb8f5acdc3}
+```
 
-- [Questionary 文档](https://questionary.readthedocs.io/)
-- [Rich 库文档](https://rich.readthedocs.io/)
-- [青少年CTF官方网站](https://www.qsnctf.com/)
+### L33t Sp34k FLAG生成
+```
+原始字符串: HELLO WORLD
+L33t Sp34k转换: H3LL0 W0RLD
+生成的FLAG: flag{H3LL0 W0RLD}
+```
 
----
+## 贡献指南
 
-# emoji参考
+欢迎提交Issue和Pull Request来改进这个项目！
 
-https://cn.piliapp.com/emoji/list/#tag
+## 许可证
 
-*让命令行工具开发变得更加有趣和高效！*
+本项目采用MIT许可证。
+
+## 联系方式
+
+如有问题或建议，请通过项目Issue进行反馈。
