@@ -4,7 +4,7 @@ import yaml
 import questionary
 from rich.console import Console
 
-from module.qsnctf_welcome import hello, about
+from .module.qsnctf_welcome import hello, about
 
 console = Console()
 
