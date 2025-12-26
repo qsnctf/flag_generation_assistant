@@ -3,6 +3,7 @@ import hashlib
 import yaml
 import questionary
 from rich.console import Console
+import importlib.resources as pkg_resources
 
 from .module.qsnctf_welcome import hello, about
 
@@ -21,9 +22,8 @@ DEFAULT_CONFIG = {
 }
 
 def load_config():
-    """尝试加载 YAML，不强制检测文件是否存在，失败则使用内置默认值"""
     try:
-        with open("config.yml", "r", encoding="utf-8") as f:
+        with pkg_resources.open_text("flag_generation_assistant", "config.yml", encoding="utf-8") as f:
             user_config = yaml.safe_load(f)
             if user_config:
                 return user_config

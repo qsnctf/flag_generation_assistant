@@ -22,6 +22,8 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent"
 ]
+[tool.setuptools.package-data]
+flag_generation_assistant = ["config.yml"]
 
 [project.scripts]
 flag_generation_assistant = "flag_generation_assistant.main:main"

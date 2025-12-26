@@ -13,6 +13,24 @@ COLORS = [
 RESET = "\033[0m"
 BOLD = "\033[1m"
 
+import importlib.resources as pkg_resources
+
+def load_config():
+    try:
+        # 读取包内 config.yml（flag_generation_assistant/config.yml）
+        with pkg_resources.open_text("flag_generation_assistant", "config.yml", encoding="utf-8") as f:
+            config = yaml.safe_load(f)
+            if config:
+                return config
+    except Exception:
+        # 失败时返回默认配置
+        return {
+            "title": "FLAG生成小助手",
+            "version": "0.1.3"
+        }
+
+config = load_config()
+
 
 # 按行彩虹（给 ASCII Art 用）
 def rainbow_print_lines(text):
@@ -55,12 +73,6 @@ def hello():
 
     # ASCII Art（普通彩虹）
     rainbow_print_lines(art)
-
-    # 读取配置
-    with open("config.yml", "r", encoding="utf-8") as f:
-        config = yaml.safe_load(f)
-
-    print()  # 空行
 
     # 标题：更亮 + 更粗 + 按字符渐变
     rainbow_print_chars(f"{config['title']}", bold=True)
