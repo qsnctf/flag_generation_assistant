@@ -4,6 +4,8 @@ import yaml
 import questionary
 from rich.console import Console
 
+from module.qsnctf_welcome import hello, about
+
 console = Console()
 
 # 1. 核心默认配置（内置 L33t 映射表）
