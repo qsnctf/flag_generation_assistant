@@ -43,6 +43,20 @@
 ### Python版本
 - Python 3.7+
 
+## PIP安装
+```bash
+pip install flag-generation-assistant
+```
+
+## 运行
+```bash
+
+flag_generation_assistant
+flag
+flag_generator
+
+```
+
 ### 依赖包
 ```bash
 pip install rich questionary
